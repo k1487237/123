@@ -1,0 +1,748 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class STUDENT {
+	protected:
+	   // int id;
+	    string name;
+		int eng;
+	    //STUDENT* next;
+	   // STUDENT* head = NULL;
+	     int a;
+   		 int b;
+	public:
+		
+	/*	
+		int get_id() 
+		{ 
+			return id; 
+		}
+	    void set_id(int new_id)
+		 {
+		 	id = new_id; 
+		 }
+		 */
+		void set_name(string name) {
+			
+	        this->name = name;
+	    }
+	
+	    string get_name() {
+	        return name;
+	    }
+	    
+		 void set_eng(int eng) {
+	        this->eng = eng;
+	    }
+	
+	    int get_eng() {
+	        return eng;
+	    }
+	   
+		 
+		
+	
+	    
+	    
+		
+};
+
+class computer_science : public STUDENT {
+	
+	private:
+		int id;
+	    int prg;
+	    computer_science* next;
+	    computer_science * head = NULL;
+	
+	public:
+	   
+		void addNode();
+		void deleteNode(int del);
+		void displayList();
+		void search(int k);
+		void addscore(int as);
+	    int get_prg() 
+		{ 
+			return prg; 
+		}
+	    void set_prg(int new_prg)
+		 {
+		 	prg = new_prg; 
+		 }
+	
+	    computer_science* get_next() 
+		{
+			return next; 
+		}
+	    void set_next(computer_science* new_next)
+		{ 
+			next = new_next; 
+		}
+		int get_id() 
+		{ 
+			return id; 
+		}
+	    void set_id(int new_id)
+		 {
+		 	id = new_id; 
+		 }
+	    	computer_science() {
+        	a = 1;
+       	    b = 1;
+	    }
+	    
+	    computer_science(int pa, int pb) {
+	        a = pa;
+	        b = pb;
+	    }
+	    
+	    computer_science operator+(const computer_science& p) {
+	       computer_science demo;
+	        demo.a = this->a + p.a;
+	        demo.b = this->b + p.b;
+	        
+	        return demo;
+	    }
+    
+};
+
+class digital_design : public STUDENT {
+	private:
+		int id;
+	    int ske;
+	    digital_design* next;
+	    digital_design * head = NULL;
+	
+	public:
+	    
+	    void addNode();
+		void deleteNode(int del);
+		void displayList();
+		void search(int k);
+		void addscore(int as);
+		
+	    int get_ske() 
+		{ 
+			return ske; 
+		}
+	    void set_ske(int new_ske) 
+		{ 
+			ske = new_ske; 
+		}
+	
+	    digital_design* get_next() 
+		{ 
+			return next; 
+		}
+	    void set_next(digital_design* new_next)
+		 { 
+		 	next = new_next; 
+		 }
+		 int get_id() 
+		{ 
+			return id; 
+		}
+	    void set_id(int new_id)
+		 {
+		 	id = new_id; 
+		 }
+		 	digital_design() {
+        	a = 1;
+       	    b = 1;
+	    }
+	    
+	    digital_design(int pa, int pb) {
+	        a = pa;
+	        b = pb;
+	    }
+	    
+	    digital_design operator+(const digital_design& p) {
+	        digital_design demo;
+	        demo.a = this->a + p.a;
+	        demo.b = this->b + p.b;
+	        
+	        return demo;
+	    }
+		
+};
+
+
+
+class Menu {
+	
+	private:
+		int select;
+	public:
+		void show();
+		void writeselect(int x)
+		{
+			select=x;
+		}
+		int readselect()
+		{
+			return select;
+		}
+
+   		
+	
+};
+
+void Menu::show()
+{
+		cout << "Menu:\n";
+        cout << "1. 新增學生資料\n";
+        cout << "2. 查詢學生資料\n";
+        cout<<  "3. 刪除學生資料\n";
+        cout << "4. 增加分數10分\n";
+        cout << "5. 列印串列資料\n";
+        cout << "6. 列印成績單\n";
+        cout << "0. Exit\n";
+        cout << "Enter your choice: ";
+       
+}
+
+
+
+void computer_science :: addNode()  {
+	
+	
+  	int id, eng, prg;
+    string name;
+    cout << "請輸入學生座號、姓名、英文成績、程式成績：\n";
+    cin >> id;
+	cin.ignore();
+	getline(cin, name); // 使用getline接受含空格的姓名
+    cin >> eng >> prg;
+	
+	if (id <= 0) {
+        cout << "請輸入座號 要大於0.\n";
+        return;
+    }
+    if ((eng<0)||(eng>100)) {
+        cout << "英文成績要介於 0~100 .\n";
+        return;
+    }
+    if ((prg<0)||(prg>100)) {
+        cout << "程式成績要介於 0~100 .\n";
+        return;
+    }
+    computer_science* newNodecs = new computer_science;
+    
+    newNodecs-> id=id;
+     newNodecs-> name=name;
+     newNodecs-> eng =eng;
+     newNodecs-> prg = prg;
+    newNodecs-> next = NULL;
+    
+    
+   
+
+    if (head == NULL) {
+        head = newNodecs;
+        cout << "New node added. ID: " << id << "\n";
+        return;
+    }
+
+   computer_science* current = head;
+    while (current->next != NULL) {
+        if (get_id() == id) {
+            cout << "座號重複 請輸入不同座號\n";
+            return;
+        }
+        current = current->next;
+    }
+
+    if (get_id()  == get_id() ) {
+        cout << "座號重複 請輸入不同座號\n";
+        return;
+    }
+    
+   
+    
+
+    if (head == NULL || get_id()  < head->get_id() ) {
+        newNodecs->next = head;
+        head = newNodecs;
+    }
+    else {
+        computer_science* current = head;
+        while (current->next != NULL && current->next->get_id()  <= get_id() ) {
+            current = current->next;
+        }
+        newNodecs->next = current->next;
+        current->next = newNodecs;
+    }
+
+    
+    
+  // current->next = newNode;
+    cout << "New node added. ID: " << id << "\n";
+}
+
+void digital_design :: addNode()  {
+	
+	
+  	int id, eng, ske;
+    string name;
+    cout << "請輸入學生座號、姓名、英文成績、素描成績：\n";
+    cin >> id;
+	cin.ignore();
+	getline(cin, name); // 使用getline接受含空格的姓名
+    cin >> eng >> ske;
+	
+	if (id <= 0) {
+        cout << "請輸入座號 要大於0.\n";
+        return;
+    }
+    if ((eng<0)||(eng>100)) {
+        cout << "英文成績要介於 0~100 .\n";
+        return;
+    }
+    if ((ske<0)||(ske>100)) {
+        cout << "素描成績要介於 0~100 .\n";
+        return;
+    }
+    digital_design* newNodedd = new digital_design;
+     newNodedd-> id = id;
+     newNodedd-> name = name;
+     newNodedd-> eng  = eng;
+     newNodedd-> ske = ske;
+
+    newNodedd-> next = NULL;
+    
+    
+   
+
+    if (head == NULL) {
+        head = newNodedd;
+        cout << "New node added. ID: " << id << "\n";
+        return;
+    }
+
+   digital_design* current = head;
+    while (current->next != NULL) {
+        if (get_id() == id) {
+            cout << "座號重複 請輸入不同座號\n";
+            return;
+        }
+        current = current->next;
+    }
+
+    if (get_id()  == get_id() ) {
+        cout << "座號重複 請輸入不同座號\n";
+        return;
+    }
+    
+   
+    
+
+    if (head == NULL || get_id()  < head->get_id() ) {
+        newNodedd->next = head;
+        head = newNodedd;
+    }
+    else {
+        digital_design* current = head;
+        while (current->next != NULL && current->next->get_id()  <= get_id() ) {
+            current = current->next;
+        }
+        newNodedd->next = current->next;
+        current->next = newNodedd;
+    }
+
+    
+    
+  // current->next = newNode;
+    cout << "New node added. ID: " << id << "\n";
+}
+
+void computer_science :: deleteNode(int del) 
+ {
+	
+    if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+    computer_science* current = head;
+    computer_science* previous = NULL;
+
+    while (current != NULL && current->get_id() != del) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        cout << "Student not found.\n";
+        return;
+    }
+
+    if (previous == NULL) {
+        head = current->next;
+    } else {
+        previous->next = current->next;
+    }
+
+    delete current;
+    cout << "Node with ID " << del << " deleted.\n";
+}
+
+void digital_design:: deleteNode(int del) 
+ {
+	
+    if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+     digital_design* current = head;
+     digital_design* previous = NULL;
+
+    while (current != NULL && current->get_id() != del) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        cout << "Student not found.\n";
+        return;
+    }
+
+    if (previous == NULL) {
+        head = current->next;
+    } else {
+        previous->next = current->next;
+    }
+
+    delete current;
+    cout << "Node with ID " << del << " deleted.\n";
+}
+
+
+
+void computer_science::displayList() {
+	
+	cout<<"head->";
+    if (head == NULL) {
+        cout << "|| \n";
+        return;
+    }
+
+    computer_science* current = head;
+ 
+    while (current != NULL) {
+      //  cout << "ID: " << current->id << "\n";
+        
+        cout << current->get_id()<<"->";
+             
+        current = current->next;
+    }
+    cout<<"||";
+}
+
+void digital_design::displayList() {
+	
+	cout<<"head->";
+    if (head == NULL) {
+        cout << "|| \n";
+        return;
+    }
+
+    digital_design* current = head;
+ 
+    while (current != NULL) {
+      //  cout << "ID: " << current->id << "\n";
+        
+        cout << current->get_id()<<"->";
+             
+        current = current->next;
+    }
+    cout<<"||";
+}
+
+
+
+void computer_science::search(int k) 
+{
+	 if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+    computer_science* current = head;
+    computer_science* previous = NULL;
+
+    while (current != NULL && current->get_id() != k) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        cout << "Student not found.\n";
+        return;
+    }
+
+    cout << "ID: " << current->get_id() << " name:" << current->get_name()<<"  "
+    << "eng: " << current->get_eng() <<  " prg: "<<current->get_prg() << "\n";
+	
+}
+
+void digital_design::search(int k)
+{
+	 if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+    digital_design* current = head;
+    digital_design* previous = NULL;
+
+    while (current != NULL && current->get_id() != k) {
+        previous = current;
+        current = current->next;
+    }
+
+    if (current == NULL) {
+        cout << "Student not found.\n";
+        return;
+    }
+
+    cout << "ID: " << current->id << " name:" << current->name<<"  "
+    << "eng: " << current->eng <<  " ske: "<<current->ske << "\n";
+	
+}
+
+
+
+
+
+void computer_science::addscore(int as)
+{
+	if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+    computer_science* current = head;
+
+    while (current != NULL && current->get_id() != get_id()) {
+
+        current = current->next;
+    }
+    if (current == NULL) {
+        cout << "Student not found. Can not add score.\n";
+        return;
+    }
+   
+	computer_science (current->prg, 10);
+	current->prg+=10;
+	cout<<"the data has added score successfully \n";
+	
+}
+void digital_design::addscore(int as)
+{
+	if (head == NULL) {
+        cout << "串列為空\n";
+        return;
+    }
+
+    digital_design* current = head;
+
+    while (current != NULL && current->get_id() != get_id()) {
+
+        current = current->next;
+    }
+    if (current == NULL) {
+        cout << "Student not found. Can not add score.\n";
+        return;
+    }
+   
+	digital_design (current->ske, 10);
+	current->ske+=10;
+	cout<<"the data has added score successfully \n";
+	
+}
+
+
+int main() {
+	//Node裡面的score物件  用"."來呼叫 
+	computer_science a;
+	digital_design b;
+	STUDENT c;
+	Menu m;
+	int choice=1;
+	int select=0;
+    do {
+    	m.show();
+        
+        cin>>choice;
+        m.writeselect(choice);
+        switch (m.readselect()) {
+            case 1: {
+            	
+            
+            	cout<<"輸入資科請按1 輸入數位請按2：";
+            	cin>>select;
+            	switch(select)
+				{
+					case 1:{
+						
+						a.addNode();
+						
+						break;
+					}
+					case 2:{
+					
+						b.addNode();
+						
+						break;
+					}
+					default: {
+                		cout << "Invalid choice, please enter a valid choice.\n";
+                		break;
+					} 
+					
+				}
+            	
+                //score.addNode();
+               
+                cout<<"\n";
+                break;
+            }
+            case 2:
+			{	
+				
+
+            	cout<<"輸入資科請按1 輸入數位請按2：";
+            	cin>>select;
+            	int id;
+				cout << "Enter ID: ";
+				cin >> id;
+			
+            	switch(select)
+				{	
+				
+					case 1:{
+						a.search(id);
+						break;
+					}
+					case 2:{
+						b.search(id);
+						break;
+					}
+					default: {
+                		cout << "Invalid choice, please enter a valid choice.\n";
+                		break;
+					} 
+					
+				}
+			
+			
+				
+				//score.search(id);	
+				break;
+			}
+            case 3: {
+                
+            	cout<<"輸入資科請按1 輸入數位請按2：";
+            	cin>>select;
+            	int id;
+				cout << "Enter ID: ";
+				cin >> id;
+                
+                switch(select)
+				{	
+					
+					case 1:{
+						a.deleteNode(id);
+						break;
+					}
+					case 2:{
+						b.deleteNode(id);
+						break;
+					}
+					default: {
+                		cout << "Invalid choice, please enter a valid choice.\n";
+                		break;
+					} 
+					
+				}       
+                
+//                score.deleteNode(id);
+
+                cout<<"\n";
+                break;
+            }
+            case 4:{
+            	int id;
+            	cout<<"輸入資科請按1 輸入數位請按2：";
+            	cin>>select;
+            	cout<<"Enter ID: ";
+            	cin>>id;
+            	 switch(select)
+				{	
+					
+					case 1:{
+						
+						a.addscore(id);
+						break;
+					}
+					case 2:{
+				
+						b.addscore(id);
+						break;
+					}
+					default: {
+                		cout << "Invalid choice, please enter a valid choice.\n";
+                		break;
+					} 
+					
+				}       	
+            	
+            	
+            	
+            	//score.addscore(id);
+				break;
+			}
+          
+            case 5: {
+            	cout<<"輸入資科請按1 輸入數位請按2：";
+            	cin>>select;
+            	 switch(select)
+				{	
+					
+					case 1:{
+						a.displayList();
+						break;
+					}
+					case 2:{
+						b.displayList();
+						break;
+					}
+					default: {
+                		cout << "Invalid choice, please enter a valid choice.\n";
+                		break;
+					} 
+					
+				}       			
+            	
+            	
+               // score.displayList();
+                cout<<"\n";
+                break;
+            }
+            case 0: {
+                cout << "Exiting program.\n";
+                break;
+            }
+            default: {
+                cout << "Invalid choice, please enter a valid choice.\n";
+                break;
+            }
+        }
+    } while (choice != 0);
+
+
+    return 0; 
+} 
